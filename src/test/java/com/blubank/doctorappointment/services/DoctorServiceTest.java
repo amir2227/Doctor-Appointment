@@ -12,7 +12,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -126,12 +125,10 @@ class DoctorServiceTest {
     @Test
     void givenNoOpenAppointment_whenDeleteAppointment_thenThrowNotFoundException() {
         Long appointmentId = 1L;
-
         doThrow(new NotFoundException("Appointment not found")).when(appointmentService).deleteAppointment(appointmentId);
         NotFoundException exception = assertThrows(NotFoundException.class, () ->
                 doctorService.deleteAppointment(appointmentId)
         );
-
         assertEquals("Appointment not found", exception.getMessage());
     }
 

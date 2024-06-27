@@ -37,7 +37,7 @@ public class AppointmentService {
     protected Appointment bookAppointment(Long appointmentId, Patient patient) {
         Appointment appointment = getAppointment(appointmentId);
         if (appointment.getPatient() != null) {
-            throw new BadRequestException("Appointment already taken");
+            throw new BadRequestException("Appointment is already taken");
         }
         appointment.setPatient(patient);
         return appointmentRepository.save(appointment);
